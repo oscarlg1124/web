@@ -1068,6 +1068,353 @@
     color: var(--ink-faint);
   }
 
+  /* ================= PRECIOS ================= */
+  .precios-section {
+    background: var(--bg-2);
+    padding: 6rem 3rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .precios-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .precios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .precio-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: all 0.4s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .precio-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--red);
+    box-shadow: 0 10px 40px rgba(229, 9, 20, 0.15);
+  }
+
+  .precio-card.featured {
+    border: 2px solid var(--red);
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(229, 9, 20, 0.08) 100%);
+  }
+
+  .precio-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--red);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    padding: 0.3rem 1rem;
+    white-space: nowrap;
+  }
+
+  .precio-name {
+    font-family: var(--mono);
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .precio-amount {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .precio-amount small {
+    font-size: 1.5rem;
+    color: var(--ink-faint);
+    font-weight: 400;
+  }
+
+  .precio-period {
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .precio-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+
+  .precio-features li {
+    padding: 0.6rem 0;
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .precio-features li::before {
+    content: "✓";
+    color: var(--red);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .precio-features li.disabled {
+    color: var(--ink-faint);
+    text-decoration: line-through;
+  }
+
+  .precio-features li.disabled::before {
+    content: "✕";
+    color: var(--ink-faint);
+  }
+
+  .btn-precio {
+    padding: 0.9rem;
+    background: transparent;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .btn-precio:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .precio-card.featured .btn-precio {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  .precio-card.featured .btn-precio:hover {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .precios-note {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+
+  /* ================= EVENTOS ================= */
+  .eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .evento-card {
+    position: relative;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .evento-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--red);
+  }
+
+  .evento-visual {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .evento-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--red-glow) 0%, transparent 70%);
+    opacity: 0.4;
+  }
+
+  .evento-1 .evento-visual { background: linear-gradient(135deg, #3a080c 0%, #1a0405 100%); }
+  .evento-2 .evento-visual { background: linear-gradient(135deg, #5a0e14 0%, #2a0608 100%); }
+  .evento-3 .evento-visual { background: linear-gradient(135deg, #1a0405 0%, #4a0a0f 100%); }
+
+  .evento-type {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--red);
+    padding: 0.4rem 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    z-index: 2;
+  }
+
+  .evento-icon {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    z-index: 1;
+    opacity: 0.85;
+    text-align: center;
+  }
+
+  .evento-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .evento-date {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  .evento-title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.4rem;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+
+  .evento-desc {
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  .evento-link {
+    color: var(--red);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s;
+  }
+
+  .evento-card:hover .evento-link {
+    gap: 1rem;
+  }
+
+  /* ================= FAQ ================= */
+  .faq-section {
+    background: var(--bg-2);
+    padding: 6rem 3rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .faq-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    margin-top: 3rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .faq-question {
+    padding: 1.5rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    transition: color 0.3s;
+    user-select: none;
+  }
+
+  .faq-question:hover {
+    color: var(--red);
+  }
+
+  .faq-question-text {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .faq-toggle {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    font-size: 1.3rem;
+    font-weight: 300;
+    transition: all 0.3s;
+  }
+
+  .faq-item.active .faq-toggle {
+    background: var(--red);
+    color: var(--ink);
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 500px;
+    padding-bottom: 1.5rem;
+  }
+
   /* ================= WHATSAPP FLOATING ================= */
   .whatsapp-float {
     position: fixed;
@@ -1152,6 +1499,10 @@
     .diamond-text { font-size: 2.5rem; }
     section { padding: 4rem 1.5rem; }
     .horarios-section, .reserva-section { padding: 4rem 1.5rem; }
+    .precios-section, .faq-section { padding: 4rem 1.5rem; }
+    .precio-amount { font-size: 2.8rem; }
+    .evento-title { font-size: 1.2rem; }
+    .faq-question-text { font-size: 1rem; }
     .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
     .gallery-1, .gallery-4, .gallery-7 { grid-column: span 2; }
     .form-row, .contact-grid { grid-template-columns: 1fr; }
@@ -1176,8 +1527,9 @@
   <ul class="nav-links">
     <li><a href="#disciplinas">Disciplinas</a></li>
     <li><a href="#horarios">Horarios</a></li>
-    <li><a href="#equipo">Equipo</a></li>
-    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#reserva" class="btn-reservar">Reservar Clase</a>
@@ -1392,11 +1744,148 @@
   </div>
 </section>
 
+<!-- PRECIOS -->
+<section class="precios-section" id="precios">
+  <div class="precios-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">03 — PRECIOS</div>
+        <h2 class="section-title">
+          Elige <span class="red">tu ritmo</span>,<br>
+          elige tu <span class="stroke">plan</span>
+        </h2>
+      </div>
+      <p style="max-width: 400px; color: var(--ink-dim);">
+        Bonos flexibles adaptados a cómo quieras entrenar. Sin matrícula ni permanencia.
+      </p>
+    </div>
+
+    <div class="precios-grid">
+      <div class="precio-card">
+        <div class="precio-name">CLASE SUELTA</div>
+        <div class="precio-amount">15€</div>
+        <div class="precio-period">/ clase individual</div>
+        <ul class="precio-features">
+          <li>1 clase a elegir</li>
+          <li>Reserva online</li>
+          <li>Cualquier disciplina</li>
+          <li class="disabled">Descuentos no aplicables</li>
+          <li class="disabled">Acceso a eventos exclusivos</li>
+        </ul>
+        <a href="#reserva" class="btn-precio">Reservar</a>
+      </div>
+
+      <div class="precio-card">
+        <div class="precio-name">BONO 4</div>
+        <div class="precio-amount">50€</div>
+        <div class="precio-period">/ mes</div>
+        <ul class="precio-features">
+          <li>4 clases al mes</li>
+          <li>Cualquier disciplina</li>
+          <li>Válido 30 días</li>
+          <li>Acceso a comunidad</li>
+          <li class="disabled">Eventos exclusivos</li>
+        </ul>
+        <a href="#reserva" class="btn-precio">Elegir plan</a>
+      </div>
+
+      <div class="precio-card featured">
+        <div class="precio-badge">MÁS POPULAR</div>
+        <div class="precio-name">BONO 8</div>
+        <div class="precio-amount">85€</div>
+        <div class="precio-period">/ mes</div>
+        <ul class="precio-features">
+          <li>8 clases al mes</li>
+          <li>Cualquier disciplina</li>
+          <li>Válido 30 días</li>
+          <li>Invitación a masterclass</li>
+          <li>Descuentos en eventos</li>
+        </ul>
+        <a href="#reserva" class="btn-precio">Elegir plan</a>
+      </div>
+
+      <div class="precio-card">
+        <div class="precio-name">ILIMITADO</div>
+        <div class="precio-amount">120€</div>
+        <div class="precio-period">/ mes</div>
+        <ul class="precio-features">
+          <li>Clases ilimitadas</li>
+          <li>Todas las disciplinas</li>
+          <li>Sala de ensayo gratis</li>
+          <li>Masterclass incluidas</li>
+          <li>Eventos exclusivos</li>
+        </ul>
+        <a href="#reserva" class="btn-precio">Elegir plan</a>
+      </div>
+    </div>
+
+    <div class="precios-note">
+      * Primera clase siempre gratis · Precios con IVA incluido · Descuentos para estudiantes y parejas
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section id="eventos">
+  <div class="section-header">
+    <div>
+      <div class="section-label">04 — EVENTOS</div>
+      <h2 class="section-title">
+        Más que<br>
+        <span class="red">una academia</span>
+      </h2>
+    </div>
+    <p style="max-width: 400px; color: var(--ink-dim);">
+      Festivales, intensivos y competiciones. Vive el baile más allá de las clases.
+    </p>
+  </div>
+  <div class="eventos-grid">
+    <div class="evento-card evento-1">
+      <div class="evento-visual">
+        <div class="evento-type">INTENSIVO</div>
+        <div class="evento-icon">NORTH<br>INTENSIVE</div>
+      </div>
+      <div class="evento-content">
+        <div class="evento-date">PRÓXIMAMENTE · 2026</div>
+        <div class="evento-title">North Intensive</div>
+        <div class="evento-desc">Nuestro intensivo más esperado. 3 días de clases con profesores internacionales, workshops y mucho más.</div>
+        <a href="#" class="evento-link">MÁS INFO →</a>
+      </div>
+    </div>
+
+    <div class="evento-card evento-2">
+      <div class="evento-visual">
+        <div class="evento-type">FESTIVAL</div>
+        <div class="evento-icon">KÄOS<br>FESTIVAL</div>
+      </div>
+      <div class="evento-content">
+        <div class="evento-date">VERANO · 2026</div>
+        <div class="evento-title">Festival de Verano</div>
+        <div class="evento-desc">Muestra anual del estudio. Todos nuestros grupos en escena para cerrar el curso a lo grande.</div>
+        <a href="#" class="evento-link">MÁS INFO →</a>
+      </div>
+    </div>
+
+    <div class="evento-card evento-3">
+      <div class="evento-visual">
+        <div class="evento-type">COMPETICIÓN</div>
+        <div class="evento-icon">BATTLE<br>KÄOS</div>
+      </div>
+      <div class="evento-content">
+        <div class="evento-date">OTOÑO · 2026</div>
+        <div class="evento-title">Competiciones</div>
+        <div class="evento-desc">Nuestro equipo de competición participa cada año en las principales batallas y competiciones nacionales.</div>
+        <a href="#" class="evento-link">MÁS INFO →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROFESORES -->
 <section id="equipo">
   <div class="section-header">
     <div>
-      <div class="section-label">03 — EQUIPO</div>
+      <div class="section-label">05 — EQUIPO</div>
       <h2 class="section-title">
         Los que hacen<br>
         el <span class="red">caos</span> posible
@@ -1444,7 +1933,7 @@
 <section id="galeria">
   <div class="section-header">
     <div>
-      <div class="section-label">04 — GALERÍA</div>
+      <div class="section-label">06 — GALERÍA</div>
       <h2 class="section-title">
         La <span class="red">familia</span><br>
         en movimiento
@@ -1465,12 +1954,108 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="section-header" style="flex-direction: column; align-items: flex-start;">
+      <div>
+        <div class="section-label">07 — PREGUNTAS FRECUENTES</div>
+        <h2 class="section-title">
+          ¿Dudas? <span class="red">Las resolvemos.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Necesito tener experiencia previa para apuntarme?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Para nada. Tenemos clases de iniciación específicamente diseñadas para quien nunca ha bailado. Nuestros profesores adaptan el nivel a cada alumno. Solo necesitas ganas de moverte y pasarlo bien.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Qué ropa debo llevar a clase?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Ropa cómoda con la que te puedas mover libremente. Para clases urbanas (hip hop, urban, dancehall) recomendamos zapatillas deportivas. Para Heels, trae tus tacones (o te podemos orientar). Para contemporáneo, calcetines o pies descalzos.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Puedo probar una clase antes de apuntarme?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>¡Sí! De hecho la primera clase es totalmente gratis. Rellena el formulario de reserva, elige la disciplina que te apetezca probar, y nos ponemos en contacto contigo para confirmar día y hora.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Hay vestuarios y duchas?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Sí, el estudio cuenta con vestuarios separados y taquillas para dejar tus cosas durante la clase. Te recomendamos traer tu propia toalla y agua.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Cómo funcionan los bonos? ¿Qué pasa si no uso todas las clases?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Los bonos tienen una validez de 30 días desde la activación. Las clases no utilizadas no se acumulan al siguiente mes, pero trabajamos con mucha flexibilidad en horarios para que puedas encajar todas las clases. Si tienes una semana complicada, avísanos y vemos soluciones.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Hay clases para niños y niñas?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Sí, tenemos clases específicas para kids (a partir de 4 años) adaptadas a cada edad: Hip Hop Kids, Urban Kids y Ballet Kids. Son clases donde aprenden disciplina, ritmo y coordinación mientras se divierten muchísimo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Puedo cancelar mi bono si no me convence?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Por supuesto. No hay permanencia. Puedes pausar o cancelar tu bono cuando quieras. Nuestro objetivo es que vengas porque te encanta, no porque estés obligado.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <span class="faq-question-text">¿Organizáis muestras, festivales o competiciones?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>¡Por supuesto! Cada año organizamos nuestro festival de fin de curso, intensivos como el North Intensive con profesores internacionales, y tenemos un equipo que participa en las principales competiciones nacionales. Consulta la sección de Eventos para más info.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- RESERVA -->
 <section class="reserva-section" id="reserva">
   <div class="reserva-inner">
     <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center;">
       <div>
-        <div class="section-label" style="justify-content: center;">05 — RESERVA</div>
+        <div class="section-label" style="justify-content: center;">08 — RESERVA</div>
         <h2 class="section-title" style="text-align: center;">
           Primera clase<br>
           <span class="red">gratis</span>
@@ -1559,7 +2144,7 @@
 <section id="contacto">
   <div class="section-header">
     <div>
-      <div class="section-label">06 — CONTACTO</div>
+      <div class="section-label">09 — CONTACTO</div>
       <h2 class="section-title">
         Ven a <span class="red">vernos</span>
       </h2>
@@ -1630,17 +2215,17 @@
       <ul>
         <li><a href="#disciplinas">Disciplinas</a></li>
         <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#precios">Precios</a></li>
         <li><a href="#equipo">Equipo</a></li>
-        <li><a href="#galeria">Galería</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Más</h4>
       <ul>
         <li><a href="#reserva">Reservar</a></li>
-        <li><a href="#">Festival</a></li>
-        <li><a href="#">Competiciones</a></li>
-        <li><a href="#">Workshops</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="#galeria">Galería</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1660,6 +2245,20 @@
 </footer>
 
 <script>
+  // FAQ toggle
+  function toggleFAQ(element) {
+    const item = element.parentElement;
+    const isActive = item.classList.contains('active');
+
+    // Cerrar todos
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+    // Si no estaba abierto, abrirlo
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  }
+
   // Tabs
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
