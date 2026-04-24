@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KÄOS Dance Studio — Donde el caos se convierte en arte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #141414;
+    --ink: #ffffff;
+    --ink-dim: #b8b8b8;
+    --ink-faint: #6a6a6a;
+    --red: #e50914;
+    --red-deep: #a00610;
+    --red-glow: rgba(229, 9, 20, 0.4);
+    --border: rgba(255,255,255,0.08);
+    --display: 'Unbounded', sans-serif;
+    --mono: 'Bebas Neue', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* ================= NAV ================= */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10,10,10,0.7);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .logo-mark {
+    width: 32px; height: 32px;
+    border: 2px solid var(--red);
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .logo-mark::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--red);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 0; height: 2px;
+    background: var(--red);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover::after { width: 100%; }
+
+  .btn-reservar {
+    background: var(--red);
+    color: var(--ink);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-reservar:hover {
+    background: var(--ink);
+    color: var(--bg);
+    box-shadow: 0 0 30px var(--red-glow);
+  }
+
+  /* ================= HERO ================= */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.1); opacity: 0.9; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-text .eyebrow {
+    font-family: var(--mono);
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out 0.1s both;
+  }
+
+  .hero h1 .red { color: var(--red); font-style: italic; }
+  .hero h1 .stroke {
+    -webkit-text-stroke: 2px var(--ink);
+    color: transparent;
+  }
+
+  .hero p.lead {
+    font-size: 1.15rem;
+    color: var(--ink-dim);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+
+  .btn-outline {
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    position: relative;
+    height: 600px;
+    animation: fadeIn 1.2s ease-out 0.4s both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .diamond {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 400px; height: 400px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border: 3px solid var(--red);
+    box-shadow: 0 0 60px var(--red-glow), inset 0 0 60px var(--red-glow);
+  }
+
+  .diamond-inner {
+    position: absolute;
+    inset: 25px;
+    border: 1px solid var(--red);
+  }
+
+  .diamond-inner-2 {
+    position: absolute;
+    inset: 50px;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+  }
+
+  .diamond-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 4rem;
+    letter-spacing: 0.05em;
+    z-index: 5;
+    text-align: center;
+    width: 100%;
+  }
+
+  .diamond-text small {
+    display: block;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.9rem;
+    letter-spacing: 0.5em;
+    color: var(--red);
+    margin-top: 0.5rem;
+  }
+
+  .floating-tag {
+    position: absolute;
+    background: var(--bg);
+    border: 1px solid var(--red);
+    padding: 0.5rem 1rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    z-index: 10;
+  }
+
+  .tag-1 { top: 10%; left: 10%; animation: float 4s ease-in-out infinite; }
+  .tag-2 { top: 20%; right: 5%; animation: float 4s ease-in-out infinite 1s; }
+  .tag-3 { bottom: 15%; left: 5%; animation: float 4s ease-in-out infinite 2s; }
+  .tag-4 { bottom: 20%; right: 10%; animation: float 4s ease-in-out infinite 3s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* Marquee */
+  .marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    background: #050505;
+  }
+
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 25s linear infinite;
+    gap: 3rem;
+  }
+
+  .marquee-track span {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+  }
+
+  .marquee-track span.red { color: var(--red); }
+  .marquee-track .dot {
+    color: var(--red);
+    font-size: 2rem;
+    align-self: center;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ================= SECTIONS GENERAL ================= */
+  section {
+    padding: 6rem 3rem;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.4em;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: "";
+    width: 40px; height: 1px;
+    background: var(--red);
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+  }
+
+  .section-title .red { color: var(--red); }
+  .section-title .stroke {
+    -webkit-text-stroke: 1.5px var(--ink);
+    color: transparent;
+  }
+
+  /* ================= DISCIPLINAS ================= */
+  .disciplinas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .disciplina {
+    position: relative;
+    padding: 2.5rem 2rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s;
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .disciplina::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--red) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 0;
+  }
+
+  .disciplina:hover::before { opacity: 0.15; }
+  .disciplina:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+  }
+
+  .disciplina-num {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .disciplina-name {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
+    margin: 1rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .disciplina-desc {
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+    position: relative;
+    z-index: 1;
+  }
+
+  .disciplina-arrow {
+    position: absolute;
+    top: 2rem; right: 2rem;
+    color: var(--red);
+    font-size: 1.5rem;
+    transition: transform 0.4s;
+  }
+
+  .disciplina:hover .disciplina-arrow {
+    transform: translate(5px, -5px);
+  }
+
+  /* ================= HORARIOS ================= */
+  .horarios-section {
+    background: var(--bg-2);
+    padding: 6rem 3rem;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .horarios-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .horarios-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .tab.active {
+    color: var(--ink);
+  }
+
+  .tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 100%; height: 2px;
+    background: var(--red);
+  }
+
+  .tab:hover { color: var(--ink-dim); }
+
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .schedule-day {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .day-name {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--red);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .class-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.9rem;
+  }
+
+  .class-item:last-child { border-bottom: none; }
+
+  .class-time {
+    font-family: var(--mono);
+    color: var(--ink-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .class-name {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ================= PROFESORES ================= */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .teacher {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .teacher-photo {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--bg-2) 0%, #1f0608 100%);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .teacher-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--red-glow) 0%, transparent 70%);
+    opacity: 0.5;
+    transition: opacity 0.4s;
+  }
+
+  .teacher:hover .teacher-photo::before { opacity: 1; }
+
+  .teacher-initials {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 4rem;
+    color: var(--ink);
+    z-index: 1;
+    position: relative;
+    opacity: 0.9;
+  }
+
+  .teacher-photo .badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: var(--red);
+    padding: 0.3rem 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    z-index: 2;
+  }
+
+  .teacher-name {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .teacher-role {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+  }
+
+  /* ================= GALERIA ================= */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 0.75rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.4s;
+  }
+
+  .gallery-item:hover { transform: scale(0.97); }
+
+  .gallery-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(229,9,20,0.3), rgba(0,0,0,0.5));
+    z-index: 1;
+    transition: opacity 0.4s;
+  }
+
+  .gallery-item:hover::before { opacity: 0.8; }
+
+  .gallery-1 { grid-column: span 2; grid-row: span 2; background: linear-gradient(135deg, #4a0a0f 0%, #1a0405 100%); }
+  .gallery-2 { background: linear-gradient(135deg, #6b1318 0%, #2a0608 100%); }
+  .gallery-3 { background: linear-gradient(135deg, #2a0608 0%, #6b1318 100%); }
+  .gallery-4 { grid-column: span 2; background: linear-gradient(135deg, #1a0405 0%, #4a0a0f 100%); }
+  .gallery-5 { background: linear-gradient(135deg, #3a080c 0%, #5a0e14 100%); }
+  .gallery-6 { background: linear-gradient(135deg, #5a0e14 0%, #3a080c 100%); }
+  .gallery-7 { grid-column: span 2; background: linear-gradient(135deg, #2a0608 0%, #4a0a0f 100%); }
+
+  .gallery-label {
+    position: absolute;
+    bottom: 1rem; left: 1rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s;
+  }
+
+  .gallery-item:hover .gallery-label {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ================= RESERVA ================= */
+  .reserva-section {
+    background: linear-gradient(180deg, var(--bg) 0%, #1a0404 100%);
+    padding: 6rem 3rem;
+    max-width: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reserva-section::before {
+    content: "";
+    position: absolute;
+    top: -50%; left: -25%;
+    width: 150%; height: 200%;
+    background: radial-gradient(ellipse, var(--red-glow) 0%, transparent 50%);
+    opacity: 0.3;
+    filter: blur(80px);
+  }
+
+  .reserva-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .reserva-form {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 3rem;
+    margin-top: 3rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group.full { grid-column: span 2; }
+
+  .form-group label {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.9rem 1rem;
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--red);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    background: var(--red);
+    color: var(--ink);
+    border: none;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+
+  .btn-submit:hover {
+    background: var(--ink);
+    color: var(--bg);
+    letter-spacing: 0.3em;
+  }
+
+  /* ================= CONTACTO ================= */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .contact-item {
+    border-left: 2px solid var(--red);
+    padding-left: 1.5rem;
+  }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-value {
+    font-size: 1.1rem;
+    color: var(--ink);
+  }
+
+  .contact-value a {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-value a:hover { color: var(--red); }
+
+  .map-placeholder {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .map-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .map-pin {
+    width: 60px; height: 60px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    position: relative;
+    animation: pulse-pin 2s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  .map-pin::before {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    background: var(--red);
+    border-radius: 50%;
+  }
+
+  .map-pin::after {
+    content: "";
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    width: 100px; height: 100px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse-ring 2s ease-out infinite;
+  }
+
+  @keyframes pulse-pin {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: translateX(-50%) scale(0.5); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1.5); opacity: 0; }
+  }
+
+  /* ================= FOOTER ================= */
+  footer {
+    background: #050505;
+    border-top: 1px solid var(--border);
+    padding: 4rem 3rem 2rem;
+  }
+
+  .footer-top {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand .logo {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .footer-brand p {
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    max-width: 300px;
+  }
+
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-col a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+
+  .footer-col a:hover { color: var(--red); }
+
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .social-link {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .social-link:hover {
+    background: var(--red);
+    border-color: var(--red);
+    transform: translateY(-3px);
+  }
+
+  .footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  /* ================= RESPONSIVE ================= */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-visual { height: 400px; order: -1; }
+    .diamond { width: 280px; height: 280px; }
+    .diamond-text { font-size: 2.5rem; }
+    section { padding: 4rem 1.5rem; }
+    .horarios-section, .reserva-section { padding: 4rem 1.5rem; }
+    .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+    .gallery-1, .gallery-4, .gallery-7 { grid-column: span 2; }
+    .form-row, .contact-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">
+    <div class="logo-mark"></div>
+    KÄOS
+  </div>
+  <ul class="nav-links">
+    <li><a href="#disciplinas">Disciplinas</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#reserva" class="btn-reservar">Reservar Clase</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="eyebrow">— KÄOS DANCE STUDIO · EST. 2020</div>
+      <h1>
+        Donde el <span class="red">caos</span><br>
+        se convierte<br>
+        en <span class="stroke">arte</span>
+      </h1>
+      <p class="lead">
+        Un estudio de danza con alma urbana. Clases de todos los estilos, profesorado profesional y una comunidad que respira movimiento. Bienvenido al caos.
+      </p>
+      <div class="hero-cta">
+        <a href="#reserva" class="btn-reservar">Primera clase gratis</a>
+        <a href="#disciplinas" class="btn-outline">Ver disciplinas</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-tag tag-1">HIP-HOP</div>
+      <div class="floating-tag tag-2">URBAN</div>
+      <div class="floating-tag tag-3">HEELS</div>
+      <div class="floating-tag tag-4">DANCEHALL</div>
+      <div class="diamond">
+        <div class="diamond-inner"></div>
+        <div class="diamond-inner-2"></div>
+      </div>
+      <div class="diamond-text">
+        KÄOS
+        <small>DANCE · STUDIO</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>HIP HOP</span><span class="dot">✦</span>
+    <span class="red">URBAN</span><span class="dot">✦</span>
+    <span>HEELS</span><span class="dot">✦</span>
+    <span class="red">DANCEHALL</span><span class="dot">✦</span>
+    <span>CONTEMPORARY</span><span class="dot">✦</span>
+    <span class="red">REGGAETON</span><span class="dot">✦</span>
+    <span>KIDS</span><span class="dot">✦</span>
+    <span class="red">COMMERCIAL</span><span class="dot">✦</span>
+    <span>HIP HOP</span><span class="dot">✦</span>
+    <span class="red">URBAN</span><span class="dot">✦</span>
+    <span>HEELS</span><span class="dot">✦</span>
+    <span class="red">DANCEHALL</span><span class="dot">✦</span>
+    <span>CONTEMPORARY</span><span class="dot">✦</span>
+    <span class="red">REGGAETON</span><span class="dot">✦</span>
+    <span>KIDS</span><span class="dot">✦</span>
+    <span class="red">COMMERCIAL</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- DISCIPLINAS -->
+<section id="disciplinas">
+  <div class="section-header">
+    <div>
+      <div class="section-label">01 — DISCIPLINAS</div>
+      <h2 class="section-title">
+        Muévete como<br>
+        <span class="red">tú quieras</span>
+      </h2>
+    </div>
+    <p style="max-width: 400px; color: var(--ink-dim);">
+      Desde los ritmos más urbanos hasta la técnica más depurada. Un estilo para cada alma.
+    </p>
+  </div>
+  <div class="disciplinas-grid">
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">01</div>
+        <div class="disciplina-name">Hip Hop</div>
+      </div>
+      <div class="disciplina-desc">Fundamentos, estilo libre y técnica callejera.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">02</div>
+        <div class="disciplina-name">Urban</div>
+      </div>
+      <div class="disciplina-desc">Coreografía comercial con energía pura.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">03</div>
+        <div class="disciplina-name">Heels</div>
+      </div>
+      <div class="disciplina-desc">Sensualidad, actitud y técnica sobre tacones.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">04</div>
+        <div class="disciplina-name">Dancehall</div>
+      </div>
+      <div class="disciplina-desc">Los ritmos de Jamaica en su estado más puro.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">05</div>
+        <div class="disciplina-name">Reggaeton</div>
+      </div>
+      <div class="disciplina-desc">Perreo con estilo, técnica y mucho flow.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">06</div>
+        <div class="disciplina-name">Contemporáneo</div>
+      </div>
+      <div class="disciplina-desc">Expresión, movimiento orgánico y creatividad.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">07</div>
+        <div class="disciplina-name">Kids</div>
+      </div>
+      <div class="disciplina-desc">Para los más peques. Diversión y disciplina.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+    <div class="disciplina">
+      <div>
+        <div class="disciplina-num">08</div>
+        <div class="disciplina-name">Ballet</div>
+      </div>
+      <div class="disciplina-desc">Base técnica para cualquier bailarín/a.</div>
+      <div class="disciplina-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section class="horarios-section" id="horarios">
+  <div class="horarios-inner">
+    <div class="section-header">
+      <div>
+        <div class="section-label">02 — HORARIOS</div>
+        <h2 class="section-title">
+          <span class="stroke">Tu semana,</span><br>
+          tu <span class="red">ritmo</span>
+        </h2>
+      </div>
+      <p style="max-width: 400px; color: var(--ink-dim);">
+        Clases de lunes a sábado, mañana y tarde. Elige el nivel y vente.
+      </p>
+    </div>
+
+    <div class="horarios-tabs">
+      <button class="tab active" data-level="todos">Todos</button>
+      <button class="tab" data-level="iniciacion">Iniciación</button>
+      <button class="tab" data-level="intermedio">Intermedio</button>
+      <button class="tab" data-level="avanzado">Avanzado</button>
+      <button class="tab" data-level="kids">Kids</button>
+    </div>
+
+    <div class="schedule-grid">
+      <div class="schedule-day">
+        <div class="day-name">Lunes</div>
+        <div class="class-item"><span class="class-name">Hip Hop Kids</span><span class="class-time">17:30</span></div>
+        <div class="class-item"><span class="class-name">Urban Iniciación</span><span class="class-time">18:30</span></div>
+        <div class="class-item"><span class="class-name">Heels Intermedio</span><span class="class-time">19:30</span></div>
+        <div class="class-item"><span class="class-name">Hip Hop Avanzado</span><span class="class-time">20:30</span></div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">Martes</div>
+        <div class="class-item"><span class="class-name">Ballet Kids</span><span class="class-time">17:30</span></div>
+        <div class="class-item"><span class="class-name">Contemporáneo</span><span class="class-time">18:30</span></div>
+        <div class="class-item"><span class="class-name">Reggaeton</span><span class="class-time">19:30</span></div>
+        <div class="class-item"><span class="class-name">Dancehall</span><span class="class-time">20:30</span></div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">Miércoles</div>
+        <div class="class-item"><span class="class-name">Urban Kids</span><span class="class-time">17:30</span></div>
+        <div class="class-item"><span class="class-name">Hip Hop Iniciación</span><span class="class-time">18:30</span></div>
+        <div class="class-item"><span class="class-name">Commercial</span><span class="class-time">19:30</span></div>
+        <div class="class-item"><span class="class-name">Heels Avanzado</span><span class="class-time">20:30</span></div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">Jueves</div>
+        <div class="class-item"><span class="class-name">Hip Hop Kids</span><span class="class-time">17:30</span></div>
+        <div class="class-item"><span class="class-name">Urban Intermedio</span><span class="class-time">18:30</span></div>
+        <div class="class-item"><span class="class-name">Contemporáneo</span><span class="class-time">19:30</span></div>
+        <div class="class-item"><span class="class-name">Reggaeton Av.</span><span class="class-time">20:30</span></div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">Viernes</div>
+        <div class="class-item"><span class="class-name">Ballet Kids</span><span class="class-time">17:30</span></div>
+        <div class="class-item"><span class="class-name">Dancehall Inic.</span><span class="class-time">18:30</span></div>
+        <div class="class-item"><span class="class-name">Urban Avanzado</span><span class="class-time">19:30</span></div>
+        <div class="class-item"><span class="class-name">Open Class</span><span class="class-time">20:30</span></div>
+      </div>
+      <div class="schedule-day">
+        <div class="day-name">Sábado</div>
+        <div class="class-item"><span class="class-name">Masterclass</span><span class="class-time">11:00</span></div>
+        <div class="class-item"><span class="class-name">Hip Hop Kids</span><span class="class-time">12:30</span></div>
+        <div class="class-item"><span class="class-name">Workshop</span><span class="class-time">17:00</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESORES -->
+<section id="equipo">
+  <div class="section-header">
+    <div>
+      <div class="section-label">03 — EQUIPO</div>
+      <h2 class="section-title">
+        Los que hacen<br>
+        el <span class="red">caos</span> posible
+      </h2>
+    </div>
+    <p style="max-width: 400px; color: var(--ink-dim);">
+      Profesores con experiencia internacional y pasión por enseñar.
+    </p>
+  </div>
+  <div class="team-grid">
+    <div class="teacher">
+      <div class="teacher-photo">
+        <div class="badge">DIRECTORA</div>
+        <div class="teacher-initials">SG</div>
+      </div>
+      <div class="teacher-name">Silvia G.</div>
+      <div class="teacher-role">DIRECCIÓN · HIP HOP</div>
+    </div>
+    <div class="teacher">
+      <div class="teacher-photo">
+        <div class="badge">DIRECTOR</div>
+        <div class="teacher-initials">FR</div>
+      </div>
+      <div class="teacher-name">Fran R.</div>
+      <div class="teacher-role">DIRECCIÓN · URBAN</div>
+    </div>
+    <div class="teacher">
+      <div class="teacher-photo">
+        <div class="teacher-initials">MA</div>
+      </div>
+      <div class="teacher-name">María A.</div>
+      <div class="teacher-role">HEELS · COMMERCIAL</div>
+    </div>
+    <div class="teacher">
+      <div class="teacher-photo">
+        <div class="teacher-initials">DL</div>
+      </div>
+      <div class="teacher-name">Daniel L.</div>
+      <div class="teacher-role">DANCEHALL · REGGAETON</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="section-header">
+    <div>
+      <div class="section-label">04 — GALERÍA</div>
+      <h2 class="section-title">
+        La <span class="red">familia</span><br>
+        en movimiento
+      </h2>
+    </div>
+    <p style="max-width: 400px; color: var(--ink-dim);">
+      Momentos reales de clases, festivales, competiciones y viajes.
+    </p>
+  </div>
+  <div class="gallery">
+    <div class="gallery-item gallery-1"><div class="gallery-label">FESTIVAL 2025</div></div>
+    <div class="gallery-item gallery-2"><div class="gallery-label">URBAN INTENSIVE</div></div>
+    <div class="gallery-item gallery-3"><div class="gallery-label">KIDS SHOWCASE</div></div>
+    <div class="gallery-item gallery-4"><div class="gallery-label">COMPETICIÓN NORTH</div></div>
+    <div class="gallery-item gallery-5"><div class="gallery-label">CLASE ABIERTA</div></div>
+    <div class="gallery-item gallery-6"><div class="gallery-label">HEELS WORKSHOP</div></div>
+    <div class="gallery-item gallery-7"><div class="gallery-label">NAVIDAD 2025</div></div>
+  </div>
+</section>
+
+<!-- RESERVA -->
+<section class="reserva-section" id="reserva">
+  <div class="reserva-inner">
+    <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column; align-items: center;">
+      <div>
+        <div class="section-label" style="justify-content: center;">05 — RESERVA</div>
+        <h2 class="section-title" style="text-align: center;">
+          Primera clase<br>
+          <span class="red">gratis</span>
+        </h2>
+        <p style="color: var(--ink-dim); margin-top: 1rem; max-width: 500px;">
+          Rellena el formulario, elige tu disciplina y nos ponemos en contacto contigo en menos de 24h.
+        </p>
+      </div>
+    </div>
+
+    <form class="reserva-form" onsubmit="handleReserva(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" required placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" required placeholder="tu@email.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" required placeholder="+34 600 000 000" />
+        </div>
+        <div class="form-group">
+          <label>Edad</label>
+          <input type="number" required placeholder="25" min="4" max="99" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Disciplina</label>
+          <select required>
+            <option value="">Elige una...</option>
+            <option>Hip Hop</option>
+            <option>Urban</option>
+            <option>Heels</option>
+            <option>Dancehall</option>
+            <option>Reggaeton</option>
+            <option>Contemporáneo</option>
+            <option>Kids</option>
+            <option>Ballet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nivel</label>
+          <select required>
+            <option value="">Elige tu nivel...</option>
+            <option>Iniciación</option>
+            <option>Intermedio</option>
+            <option>Avanzado</option>
+            <option>No lo sé, nunca he bailado</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label>Comentarios (opcional)</label>
+          <textarea placeholder="Cuéntanos algo sobre ti o tus objetivos..."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Reservar mi clase gratuita</button>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-header">
+    <div>
+      <div class="section-label">06 — CONTACTO</div>
+      <h2 class="section-title">
+        Ven a <span class="red">vernos</span>
+      </h2>
+    </div>
+    <p style="max-width: 400px; color: var(--ink-dim);">
+      Pásate por el estudio, escríbenos o llámanos. Aquí siempre hay sitio.
+    </p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-label">DIRECCIÓN</div>
+        <div class="contact-value">Calle del Ritmo, 42<br>28001 Madrid, España</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">HORARIO</div>
+        <div class="contact-value">Lun - Vie: 10:00 - 22:30<br>Sábados: 10:00 - 14:00</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">EMAIL</div>
+        <div class="contact-value"><a href="mailto:hola@kaosdancestudio.com">hola@kaosdancestudio.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">TELÉFONO</div>
+        <div class="contact-value"><a href="tel:+34900000000">+34 900 000 000</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-label">INSTAGRAM</div>
+        <div class="contact-value"><a href="https://instagram.com/kaosdancestudio" target="_blank">@kaosdancestudio</a></div>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <div class="map-grid"></div>
+      <div class="map-pin"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-mark"></div>
+        KÄOS
+      </div>
+      <p>Estudio de danza en el corazón de la ciudad. Desde 2020 enseñando a bailar con actitud.</p>
+      <div class="social-links">
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">TT</a>
+        <a href="#" class="social-link">YT</a>
+        <a href="#" class="social-link">FB</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Estudio</h4>
+      <ul>
+        <li><a href="#disciplinas">Disciplinas</a></li>
+        <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#galeria">Galería</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Más</h4>
+      <ul>
+        <li><a href="#reserva">Reservar</a></li>
+        <li><a href="#">Festival</a></li>
+        <li><a href="#">Competiciones</a></li>
+        <li><a href="#">Workshops</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">Condiciones</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 KÄOS Dance Studio. Todos los derechos reservados.</div>
+    <div>Hecho con <span style="color: var(--red);">♥</span> y mucho ritmo</div>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Form
+  function handleReserva(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    const originalText = btn.textContent;
+    btn.textContent = '✓ Reserva enviada';
+    btn.style.background = '#1a7a1a';
+    setTimeout(() => {
+      e.target.reset();
+      btn.textContent = originalText;
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
